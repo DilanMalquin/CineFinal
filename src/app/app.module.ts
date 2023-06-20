@@ -13,6 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PeliculasComponent } from './peliculas/peliculas.component';
 import { MenuComponent } from './menu/menu.component';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { MenuComponent } from './menu/menu.component';
     MatTableModule,
     MatSortModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

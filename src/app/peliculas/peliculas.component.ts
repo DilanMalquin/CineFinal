@@ -71,4 +71,8 @@ export class PeliculasComponent implements OnInit{
     };
     this.getPeliculas(request);
   }
+
+  onClickButton(row: any) {
+    // Lógica a ejecutar al hacer clic en el botón
+  }
 }
