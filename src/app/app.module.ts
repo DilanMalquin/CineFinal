@@ -14,6 +14,9 @@ import { MatInputModule } from '@angular/material/input';
 import { PeliculasComponent } from './peliculas/peliculas.component';
 import { MenuComponent } from './menu/menu.component';
 import { MatIconModule } from '@angular/material/icon';
+import { VentaDeEntradasComponent } from './venta-de-entradas/venta-de-entradas.component';
+import { ButacasComponent } from './butacas/butacas.component';
+import { ReservaFormComponent } from './reserva-form/reserva-form.component';
 
 
 
@@ -22,7 +25,10 @@ import { MatIconModule } from '@angular/material/icon';
     AppComponent,
     DirectoresComponent,
     PeliculasComponent,
-    MenuComponent
+    MenuComponent,
+    VentaDeEntradasComponent,
+    ButacasComponent,
+    ReservaFormComponent
   ],
   imports: [
     BrowserModule,
