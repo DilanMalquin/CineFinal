@@ -19,7 +19,6 @@ export class PeliculasComponent implements OnInit{
   dataSource: MatTableDataSource<any>;
   totalElementos: number = 0;
   loading: boolean = false;
-  lista: any[] = [];
 
   /*####################MOVIDA
   movida: string = "uy";
@@ -51,13 +50,9 @@ export class PeliculasComponent implements OnInit{
     this.loading = true;
     this.peliculaService.getData(request)
       .subscribe((data: PagedDirectorResponse) => {
-        console.log(this.filtrarLista(data.lista))
-        this.lista = this.filtrarLista(data.lista);
-
-
 
         // console.log(data);
-        this.dataSource.data = this.lista;
+        this.dataSource.data = data.lista;
         this.totalElementos = data.elementosTotales;
         this.loading = false;
         this.displayedColumns = Object.keys(data.lista[0]);
@@ -75,17 +70,5 @@ export class PeliculasComponent implements OnInit{
       sort: ''
     };
     this.getPeliculas(request);
-  }
-
-  filtrarLista(listaAfiltrar : any[]){
-    let index = 0;
-    listaAfiltrar.forEach(elemento => {
-      console.log(elemento.fechaFinEmision)
-      
-      if(elemento.fechaFinEmision != null) listaAfiltrar.splice(index);
-      index++;
-    });
-
-    return listaAfiltrar;
   }
 }
