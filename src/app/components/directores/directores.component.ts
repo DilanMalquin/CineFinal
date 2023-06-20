@@ -1,4 +1,3 @@
-// directores.component.ts
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DirectorService } from 'src/app/services/director.service';
 import { PageableRequest } from 'src/app/interfaces/pageable-request';
@@ -22,7 +21,7 @@ export class DirectoresComponent implements OnInit{
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  
+
   constructor(private directorService: DirectorService) {
     this.dataSource = new MatTableDataSource<any>();
     this.dataSource.paginator = this.paginator;
@@ -50,20 +49,20 @@ export class DirectoresComponent implements OnInit{
         this.dataSource.data = data.lista;
         this.totalElementos = data.elementosTotales;
         this.loading = false;
-        
+
         // Obtener las columnas de base de datos
         this.displayedColumns = Object.keys(data.lista[0]);
-  
+
       }, error => {
         this.loading = false;
       });
   }
   nextPage(event: PageEvent) {
     console.log("Buenas");
-    const request: PageableRequest = {        
+    const request: PageableRequest = {
       page: event.pageIndex,
       size: event.pageSize,
-      sort: '' 
+      sort: ''
     };
     this.getDirectores(request);
   }
