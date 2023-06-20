@@ -18,6 +18,7 @@ export class DirectoresComponent implements OnInit{
   dataSource: MatTableDataSource<any>;
   totalElementos: number = 0;
   loading: boolean = false;
+  movida: string = "uy";
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
