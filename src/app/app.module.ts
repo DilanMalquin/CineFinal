@@ -12,13 +12,15 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PeliculasComponent } from './peliculas/peliculas.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DirectoresComponent,
-    PeliculasComponent
+    PeliculasComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
