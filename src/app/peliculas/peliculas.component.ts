@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { DirectorService } from 'src/app/services/director.service';
 import { PageableRequest } from 'src/app/interfaces/pageable-request';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -13,12 +13,20 @@ import { PeliculaService } from '../services/pelicula.service';
   styleUrls: ['./peliculas.component.css']
 })
 
+
 export class PeliculasComponent implements OnInit{
+
+ // @Input() flag : number;
+//  @Output() flagIncrement : EventEmitter<any> = new EventEmitter<any>();
+
+@Output() cambiarComponente = new EventEmitter<string>();
 
   displayedColumns: string[] = [];
   dataSource: MatTableDataSource<any>;
   totalElementos: number = 0;
   loading: boolean = false;
+
+ 
 
   /*####################MOVIDA
   movida: string = "uy";
@@ -73,6 +81,7 @@ export class PeliculasComponent implements OnInit{
   }
 
   onClickButton(row: any) {
-    // Lógica a ejecutar al hacer clic en el botón
+    console.log('hola')
+    this.cambiarComponente.emit('butacas')
   }
 }
