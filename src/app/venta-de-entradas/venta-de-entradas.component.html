@@ -1,0 +1,10 @@
+<h1>La movida de venta de entradas</h1>
+<!--
+<app-peliculas [hidden]="!(flag == 0)"></app-peliculas>
+<app-butacas [hidden]="!(flag == 1)"></app-butacas>
+<app-reserva-form [hidden]="!(flag == 2)"></app-reserva-form>-->
+<div [ngSwitch]="componenteVisible">
+    <app-peliculas *ngSwitchCase="'pelis'" (cambiarComponente)="cambiarComponenteVisible($event)"></app-peliculas>
+    <app-butacas *ngSwitchCase="'butacas'"></app-butacas>
+    <app-reserva-form *ngSwitchCase="'formulario'"></app-reserva-form>
+</div>
