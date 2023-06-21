@@ -11,9 +11,9 @@ export class DataService<T> {
 
   protected apiUrl = 'http://localhost:8080/api';
 
-  butacas : {
-    libres : any[],
-    ocupadas : any[]
+  butacas = {
+    libres : [],
+    ocupadas : []
   };
 
 
@@ -48,12 +48,10 @@ export class DataService<T> {
       params = params.set('tituloPelicula', emision['tituloPelicula']);
       params = params.set('fecha', emision['fecha']);
       this.http.get<any>(`http://localhost:8080/api/venta_entrada/butacas_disponibles`, { params }).subscribe(data => {
-        console.log(data['disponibles'])
-        this.butacas.libres = data.disponibles
+        this.butacas.libres = data['disponibles']
         this.butacas.ocupadas = data['ocupadas']
       })
     });
-    console.log(this.butacas)
     return this.butacas;
   }
 }
