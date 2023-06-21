@@ -3,30 +3,26 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PageableRequest } from '../interfaces/pageable-request';
 import { PagedResponseDto } from '../clases/paged-response.dto';
+import { Butaca } from '../interfaces/butaca';
+import { Butacas } from '../interfaces/butacas';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService<T> {
-
   protected apiUrl = 'http://localhost:8080/api';
+  butacas2 : Butacas;
 
-  butacas = {
-    libres : [],
-    ocupadas : []
-  };
+  constructor(private http: HttpClient) {}
 
-
-
-  constructor(private http: HttpClient) {
-  }
-
-  public getData(pageable: PageableRequest, idEspectador?: number): Observable<PagedResponseDto<T>> {
+  public getData(
+    pageable: PageableRequest,
+    idEspectador?: number
+  ): Observable<PagedResponseDto<T>> {
     let params = new HttpParams();
     params = params.set('page', pageable.page.toString());
     params = params.set('size', pageable.size.toString());
     params = params.set('sort', pageable.sort);
-    //CUIDADO CON ESTO, hay que pasarle este atributo
     params = params.set('idEspectador', 4);
 
     if (idEspectador != null) {
@@ -36,22 +32,33 @@ export class DataService<T> {
     return this.http.get<PagedResponseDto<T>>(`${this.apiUrl}`, { params });
   }
 
-  public getButacasDto(titulo : string) : any{
+  public getButacasDto(titulo: string): Observable<any> {
     let params = new HttpParams();
     params = params.set('titulo', titulo);
-    this.http.get<PagedResponseDto<T>>(`${this.apiUrl}`, { params }).subscribe(data => {
-      let emision : any;
-      console.log(data.lista[0])
-      emision = data.lista[0];
-      let params = new HttpParams();
-      params = params.set('numeroSala', emision['numeroSala']);
-      params = params.set('tituloPelicula', emision['tituloPelicula']);
-      params = params.set('fecha', emision['fecha']);
-      this.http.get<any>(`http://localhost:8080/api/venta_entrada/butacas_disponibles`, { params }).subscribe(data => {
-        this.butacas.libres = data['disponibles']
-        this.butacas.ocupadas = data['ocupadas']
-      })
-    });
-    return this.butacas;
+    this.http
+      .get<PagedResponseDto<T>>(`${this.apiUrl}`, { params })
+      .subscribe((data) => {
+        let emision: any;
+        console.log(data.lista[0]);
+        emision = data.lista[0];
+
+        let params = new HttpParams();
+        params = params.set('numeroSala', emision['numeroSala']);
+        params = params.set('tituloPelicula', emision['tituloPelicula']);
+        params = params.set('fecha', emision['fecha']);
+
+        return this.http.get<Butacas>(`http://localhost:8080/api/venta_entrada/butacas_disponibles`,
+{ params }
+          )
+          .subscribe((data) => {
+            console.log(data);
+
+            // this.butacas.libres = data['disponibles'];
+            // this.butacas.ocupadas = data['ocupadas'];
+            // this.butacas.filas = data['numeroFilas'];
+            // this.butacas.columnas = data['numeroColumnas'];
+
+          });
+      });
   }
 }
