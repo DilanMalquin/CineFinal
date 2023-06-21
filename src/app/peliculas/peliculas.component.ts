@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { DirectorService } from 'src/app/services/director.service';
 import { PageableRequest } from 'src/app/interfaces/pageable-request';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { PagedDirectorResponse } from 'src/app/interfaces/paged-director-response';
@@ -20,6 +19,7 @@ export class PeliculasComponent implements OnInit{
 //  @Output() flagIncrement : EventEmitter<any> = new EventEmitter<any>();
 
 @Output() cambiarComponente = new EventEmitter<string>();
+@Output() enviarTituloOutput = new EventEmitter<string>();
 
   displayedColumns: string[] = [];
   dataSource: MatTableDataSource<any>;
@@ -80,8 +80,18 @@ export class PeliculasComponent implements OnInit{
     this.getPeliculas(request);
   }
 
-  onClickButton(row: any) {
+  funcionBoton(titulo : string) {
+    this.onClickButton();
+    this.enviarTitulo(titulo);
+  }
+
+  onClickButton() {
     console.log('hola')
     this.cambiarComponente.emit('butacas')
+  }
+
+  enviarTitulo(titulo : string) {
+//    console.log(titulo)
+    this.enviarTituloOutput.emit(titulo);
   }
 }

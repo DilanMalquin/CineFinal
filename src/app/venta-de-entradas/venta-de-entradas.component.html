@@ -5,6 +5,6 @@
 <app-reserva-form [hidden]="!(flag == 2)"></app-reserva-form>-->
 <div [ngSwitch]="componenteVisible">
     <app-peliculas *ngSwitchCase="'pelis'" (cambiarComponente)="cambiarComponenteVisible($event)"></app-peliculas>
-    <app-butacas *ngSwitchCase="'butacas'"></app-butacas>
+    <app-butacas *ngSwitchCase="'butacas'" (enviarTituloOutput)="recibirTitulo($any($event))"></app-butacas>
     <app-reserva-form *ngSwitchCase="'formulario'"></app-reserva-form>
 </div>

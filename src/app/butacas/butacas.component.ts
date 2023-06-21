@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ButacasService } from '../services/butacas.service';
 
 @Component({
   selector: 'app-butacas',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./butacas.component.css']
 })
 export class ButacasComponent {
+  
+  titulo : string = 'Training Day';
+  
+  constructor(private butacasService: ButacasService) {
+    
+  }
 
+  ngOnInit(){
+    this.butacasService.getButacasDto(this.titulo);
+  }
 }

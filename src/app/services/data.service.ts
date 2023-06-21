@@ -11,6 +11,8 @@ export class DataService<T> {
 
   protected apiUrl = 'http://localhost:8080/api';
 
+  emision : Observable<T> = new Observable();
+
   constructor(private http: HttpClient) {}
 
   public getData(pageable: PageableRequest, idEspectador?: number): Observable<PagedResponseDto<T>> {
@@ -26,5 +28,17 @@ export class DataService<T> {
     }
 
     return this.http.get<PagedResponseDto<T>>(`${this.apiUrl}`, { params });
+  }
+
+  public getButacasDto(titulo : string){
+    let params = new HttpParams();
+    params = params.set('titulo', titulo);
+    this.http.get<PagedResponseDto<T>>(`${this.apiUrl}`, { params }).subscribe(data => {
+      console.log(data.lista[0])
+      this.emision = data.lista[0];
+    });
+
+    console.log(this.emision)
+
   }
 }
