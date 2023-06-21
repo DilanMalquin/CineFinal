@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class VentaDeEntradasComponent {
   
+  tituloPeli : string = ''; 
   flag : number = 0;
   componenteVisible : string = 'pelis';
 
@@ -16,5 +17,10 @@ export class VentaDeEntradasComponent {
 
   cambiarComponenteVisible(componente : string){
     this.componenteVisible = componente;
+  }
+
+  recibirTitulo(titulo : string) {
+    console.log(titulo)
+    this.tituloPeli = titulo;
   }
 }
