@@ -9,12 +9,15 @@ import { ButacasService } from '../services/butacas.service';
 export class ButacasComponent {
   
   titulo : string = 'Training Day';
+
+  butacas : {};
   
   constructor(private butacasService: ButacasService) {
     
   }
 
   ngOnInit(){
-    this.butacasService.getButacasDto(this.titulo);
+    this.butacas = this.butacasService.getButacasDto(this.titulo);
+    console.log(this.butacas)
   }
 }
