@@ -3,6 +3,10 @@
     grid-template-columns: 20% auto 20%;
 }
 
+.extremos {
+    border: solid whitesmoke;
+    color: white;
+}
 
 
 .contenidoTabla {
