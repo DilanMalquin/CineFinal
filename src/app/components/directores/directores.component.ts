@@ -29,7 +29,7 @@ export class DirectoresComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getDirectores({ page: 0, size: 5, sort: "" });
+    this.getDirectores({ page: 0, size: 5, sort: "id" });
   }
 
   applyFilter(event: Event) {
